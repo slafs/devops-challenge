@@ -1,0 +1,14 @@
+FROM centos:6
+MAINTAINER slafs
+
+ADD ./epel-release-6-8.noarch.rpm /epel/
+RUN rpm -Uvh /epel/epel-release-6-8.noarch.rpm
+RUN yum clean all && yum install -y salt-minion
+
+RUN chkconfig --add salt-minion
+
+ADD . /contest
+WORKDIR /contest
+
+ENTRYPOINT ["./test.sh"]
+

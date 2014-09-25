@@ -1,0 +1,12 @@
+FROM ubuntu:14.04
+MAINTAINER slafs
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get install -y -q python-software-properties software-properties-common
+RUN add-apt-repository -y ppa:saltstack/salt
+RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && apt-get install -y -q salt-minion
+
+ADD . /contest
+WORKDIR /contest
+
+ENTRYPOINT ["./test.sh"]
+
