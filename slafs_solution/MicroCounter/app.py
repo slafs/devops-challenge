@@ -8,7 +8,7 @@ redis = redis.StrictRedis()
 
 
 @app.route('/counter', methods=['GET', 'POST'])
-def counter():
+def get_or_incr():
     name = 'counter'
     post_key = 'incrBy'
 

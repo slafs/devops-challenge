@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "Not implemented"
-exit 1
+salt-call --local --file-root=./slafs_solution/ state.highstate
+
