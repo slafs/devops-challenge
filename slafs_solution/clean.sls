@@ -17,10 +17,15 @@ clean_redis:
 
 
 clean:
+    cmd.run:
+        - name: kill $(cat /tmp/contest/gunicorn.pid)
+        - onlyif: test -f /tmp/contest/gunicorn.pid
     file.absent:
         - names:
             - /tmp/contest
             - /tmp/pip_build_root
+        - require:
+            - cmd: clean
     pip.removed:
         - name: virtualenv
     pkg.purged:
